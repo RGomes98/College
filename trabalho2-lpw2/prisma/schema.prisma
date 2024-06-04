@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Student {
+  id    String  @id @default(cuid())
+  name  String
+  email String  @unique
+  Grade Grade[]
+
+  @@map("students")
+}
+
+model Discipline {
+  id       String  @id @default(cuid())
+  code     String  @unique
+  workload Int
+  name     String
+  Grade    Grade[]
+
+  @@map("disciplines")
+}
+
+model Grade {
+  id            String     @id @default(cuid())
+  grade_1       Decimal
+  grade_2       Decimal
+  student_id    String
+  student       Student    @relation(fields: [student_id], references: [id])
+  discipline_id String
+  discipline    Discipline @relation(fields: [discipline_id], references: [id])
+
+  @@map("grades")
+}
