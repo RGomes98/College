@@ -59,9 +59,8 @@ namespace BasicCSharpConcepts {
             for (int i = 0; i < message.Length; i++) {
                 if (message[i] == ' ') continue;
                 if (i % 2 == 0) {
-                    if (text.Length > 0) {
-                        text += $"-{message[i]}";
-                    } else text += $"{message[i]}";
+                    if (text.Length > 0) text += $"-{message[i]}";
+                    else text += $"{message[i]}";
                 }
             }
             
