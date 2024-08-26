@@ -1,38 +1,42 @@
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, Text, TextInput, View } from 'react-native';
+import { styles } from './stylesheets/globals';
 import { useState } from 'react';
 
 export default function App() {
-  const [itemName, setItemName] = useState('');
   const [items, setItems] = useState<string[]>([]);
+  const [itemName, setItemName] = useState('');
+  const [error, setError] = useState('');
 
   function handleInputChange(text: string) {
     setItemName(text);
   }
 
   function handleDeleteItem(index: number) {
-    setItems((prev) => prev.toSpliced(index, 1));
+    setItems((currentItems) => currentItems.toSpliced(index, 1));
   }
 
   function handleAddItem() {
-    if (!itemName.length) return;
-    setItemName('');
+    if (itemName.length < 5) return setError('O texto precisa ter no mínimo 5 caracteres.');
     setItems((currentItems) => [...currentItems, itemName]);
+    setItemName('');
+    setError('');
   }
 
   return (
-    <View style={main.container}>
-      <Text style={main.heading}>Todo List</Text>
-      <View style={submit.container}>
-        <Text style={submit.heading}>Digite seu texto:</Text>
-        <TextInput style={submit.input} value={itemName} onChangeText={handleInputChange} />
+    <View style={styles.main.container}>
+      <Text style={styles.main.heading}>Todo List</Text>
+      <View style={styles.submit.container}>
+        <Text style={styles.submit.heading}>Digite seu texto:</Text>
+        <TextInput style={styles.submit.input} value={itemName} onChangeText={handleInputChange} />
         <Button title='Adicionar' onPress={handleAddItem} />
       </View>
-      <View style={item.container}>
+      {error && <Text style={styles.error.text}>{error}</Text>}
+      <View style={styles.item.container}>
         {items.map((content, index) => {
           return (
-            <View key={index} style={item.element} onTouchStart={() => handleDeleteItem(index)}>
-              <Text style={item.text}>{content}</Text>
-              <Button color='red' title='Deletar' />
+            <View key={index} style={styles.item.element}>
+              <Text style={styles.item.text}>{content}</Text>
+              <Button color='red' title='Deletar' onPress={() => handleDeleteItem(index)} />
             </View>
           );
         })}
@@ -40,35 +44,3 @@ export default function App() {
     </View>
   );
 }
-
-const main = StyleSheet.create({
-  container: {
-    height: '100%',
-    backgroundColor: 'lightgrey',
-    display: 'flex',
-    gap: 10,
-    flexDirection: 'column',
-    paddingHorizontal: 25,
-    paddingVertical: 50,
-  },
-  heading: { fontSize: 28, fontWeight: '500' },
-});
-
-const submit = StyleSheet.create({
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 20,
-    gap: 10,
-  },
-  heading: { fontSize: 18 },
-  input: { borderWidth: 1, flexGrow: 1 },
-});
-
-const item = StyleSheet.create({
-  container: { display: 'flex', flexDirection: 'column', gap: 10 },
-  text: { marginRight: 'auto' },
-  element: { display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10 },
-});
