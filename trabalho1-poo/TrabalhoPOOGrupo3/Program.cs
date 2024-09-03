@@ -1,4 +1,4 @@
-﻿namespace TrabalhoPOOGrupo3
+namespace TrabalhoPOOGrupo3
 {
     class Program
     {
@@ -29,17 +29,76 @@
                         Console.WriteLine("Finalizando o programa.");
                         return;
                     case "1":
-                        DesafiosGrupo3.Sum();
+                        {                    
+                            Console.WriteLine("Digite o valor de A:");
+                            string? aInput = Console.ReadLine();
+                            int a;
+
+                            if (!Int32.TryParse(aInput, out a))
+                                throw new ArgumentException("Valor de A inválido.");
+
+                            Console.WriteLine("Digite o valor de B:");
+                            string? bInput = Console.ReadLine();
+                            int b;
+
+                            if (!Int32.TryParse(bInput, out b))
+                                throw new ArgumentException("Valor de B inválido.");
+
+                            int sum = DesafiosGrupo3.Sum(a, b);
+                            Console.WriteLine($"A soma dos números {a} e {b} é igual a {sum}.");
+                        }
                         break;
                     case "2":
-                        DesafiosGrupo3.MetersToMillimeters();
+                        {
+                        Console.WriteLine("Digite um valor em metros para ser convertido para milímetros:");
+                            string? input = Console.ReadLine();
+                            int meters;
+
+                            if (!Int32.TryParse(input, out meters))
+                                throw new ArgumentException("Valor de B inválido.");
+
+                            int milimeters = DesafiosGrupo3.MetersToMillimeters(meters);
+
+                            Console.WriteLine(
+                                $"A conversão de {meters} metro(s) para milímetros é {milimeters}mm."
+                            ); 
+                        }
                         break;
                     case "3":
                         DesafiosGrupo3 challenges = new DesafiosGrupo3();
                         challenges.RentCar();
                         break;
                     case "4":
-                        DesafiosGrupo3.Bhaskara();
+                        {
+                            Console.WriteLine("Digite o valor de A:");
+                            string? aInput = Console.ReadLine();
+                            int a;
+
+                            if (!Int32.TryParse(aInput, out a))
+                                throw new ArgumentNullException("Valor de A inválido.");
+
+                            Console.WriteLine("Digite o valor de B:");
+                            string? bInput = Console.ReadLine();
+                            int b;
+
+                            if (!Int32.TryParse(bInput, out b))
+                                throw new ArgumentNullException("Valor de B inválido.");
+
+                            Console.WriteLine("Digite o valor de C:");
+                            string? cInput = Console.ReadLine();
+                            int c;
+
+                            if (!Int32.TryParse(cInput, out c))
+                                throw new ArgumentNullException("Valor de C inválido.");
+
+                            double bhaskara = DesafiosGrupo3.Bhaskara(b, a, c);
+
+                            Console.WriteLine($"Δ = b² - 4ac");
+                            Console.WriteLine($"Δ = ({b})² - 4 * {a} * {c}");
+                            Console.WriteLine($"Δ = {Math.Pow(b, 2)} - 4 * {a} * {c}");
+                            Console.WriteLine($"Δ = {Math.Pow(b, 2)} - ({4 * a * c})");
+                            Console.WriteLine($"Δ = {bhaskara}");
+                        }
                         break;
                     default:
                         Console.WriteLine("Opção inexistente!");
@@ -48,74 +107,19 @@
             }
         }
 
-        public static int Sum()
+        public static int Sum(int a, int b)
         {
-            Console.WriteLine("Digite o valor de A:");
-            string? aInput = Console.ReadLine();
-            int a;
-
-            if (!Int32.TryParse(aInput, out a))
-                throw new ArgumentException("Valor de A inválido.");
-
-            Console.WriteLine("Digite o valor de B:");
-            string? bInput = Console.ReadLine();
-            int b;
-
-            if (!Int32.TryParse(bInput, out b))
-                throw new ArgumentException("Valor de B inválido.");
-
-            Console.WriteLine($"A soma dos números {a} e {b} é igual a {a + b}.");
             return a + b;
         }
 
-        public static int MetersToMillimeters()
+        public static int MetersToMillimeters(int meters)
         {
-            const int METER_TO_MM_FORMULA = 1000;
-
-            Console.WriteLine("Digite um valor em metros para ser convertido para milímetros:");
-            string? input = Console.ReadLine();
-            int meters;
-
-            if (!Int32.TryParse(input, out meters))
-                throw new ArgumentException("Valor de B inválido.");
-
-            Console.WriteLine(
-                $"A conversão de {meters} metro(s) para milímetros é {meters * METER_TO_MM_FORMULA}mm."
-            );
-
-            return meters * METER_TO_MM_FORMULA;
+            return meters * 1000;
         }
 
-        public static double Bhaskara()
+        public static double Bhaskara(int b, int a, int c)
         {
-            Console.WriteLine("Digite o valor de A:");
-            string? aInput = Console.ReadLine();
-            int a;
-
-            if (!Int32.TryParse(aInput, out a))
-                throw new ArgumentNullException("Valor de A inválido.");
-
-            Console.WriteLine("Digite o valor de B:");
-            string? bInput = Console.ReadLine();
-            int b;
-
-            if (!Int32.TryParse(bInput, out b))
-                throw new ArgumentNullException("Valor de B inválido.");
-
-            Console.WriteLine("Digite o valor de C:");
-            string? cInput = Console.ReadLine();
-            int c;
-
-            if (!Int32.TryParse(cInput, out c))
-                throw new ArgumentNullException("Valor de C inválido.");
-
-            Console.WriteLine($"Δ = b² - 4ac");
-            Console.WriteLine($"Δ = ({b})² - 4 * {a} * {c}");
-            Console.WriteLine($"Δ = {Math.Pow(b, 2)} - 4 * {a} * {c}");
-            Console.WriteLine($"Δ = {Math.Pow(b, 2)} - ({4 * a * c})");
-            Console.WriteLine($"Δ = {Math.Pow(b, 2) - 4 * a * c}");
-
-            return Math.Pow(b, 2) - 4 * a * c;
+            return Math.Pow(b, 2) - (4 * a * c);
         }
 
         public Car RentCar()
