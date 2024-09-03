@@ -3,7 +3,7 @@ namespace TrabalhoPOOGrupo3Testes;
 using TrabalhoPOOGrupo3;
 
 [TestClass]
-public class UnitTest1
+public class UnitTests
 {
     [TestMethod]
     public void TestSum()
@@ -14,9 +14,10 @@ public class UnitTest1
     }
 
     // [TestMethod]
-    // public void TestSum1()
+    // public void TestSumFailure()
     // {
     //     int sum = DesafiosGrupo3.Sum(20000, 20000);
+
     //     // Dar errado
     //     Assert.AreEqual(40001, sum);
     // }
@@ -30,7 +31,7 @@ public class UnitTest1
     }
 
     // [TestMethod]
-    // public void TestMetersToMillimeters1()
+    // public void TestMetersToMillimetersFailure()
     // {
     //     int millimeters = DesafiosGrupo3.MetersToMillimeters(100);
 
@@ -47,7 +48,7 @@ public class UnitTest1
     }
 
     // [TestMethod]
-    // public void TestBhaskara1()
+    // public void TestBhaskaraFailure()
     // {
     //     double bhaskara = DesafiosGrupo3.Bhaskara(80, 20, 40);
 
@@ -65,10 +66,9 @@ public class UnitTest1
     }
 
     // [TestMethod]
-    // public void TestRentCar1()
+    // public void TestRentCarFailure()
     // {
     //     Car car = new Car("AUDI", 2042, "AU777", 600.00);
-
     //     double rent = car.CalculateRentPrice(10);
 
     //     // Dar errado
