@@ -12,36 +12,39 @@
     {
         public static void Menu()
         {
-            Console.WriteLine(
-                $"Escolha uma opção:\n"
-                    + "(0) Sair\n"
-                    + "(1) Somar números\n"
-                    + "(2) Converter de metros para milímetros\n"
-                    + "(3) Aluguel de Carro\n"
-                    + "(4) Calcular Báskara"
-            );
-
-            switch (Console.ReadLine())
+            while (true)
             {
-                case "0":
-                    Console.WriteLine("Saindo do menu.");
-                    return;
-                case "1":
-                    DesafiosGrupo3.Sum();
-                    break;
-                case "2":
-                    DesafiosGrupo3.MetersToMillimeters();
-                    break;
-                case "3":
-                    DesafiosGrupo3 challenges = new DesafiosGrupo3();
-                    challenges.RentCar();
-                    break;
-                case "4":
-                    DesafiosGrupo3.Bhaskara();
-                    break;
-                default:
-                    Console.WriteLine("Opção inexistente!");
-                    break;
+                Console.WriteLine("---------------------------------------");
+                Console.WriteLine("Escolha uma opção:");
+                Console.WriteLine("(0) Sair");
+                Console.WriteLine("(1) Somar números");
+                Console.WriteLine("(2) Converter de metros para milímetros");
+                Console.WriteLine("(3) Aluguel de Carro");
+                Console.WriteLine("(4) Calcular Báskara");
+                Console.WriteLine("---------------------------------------");
+
+                switch (Console.ReadLine())
+                {
+                    case "0":
+                        Console.WriteLine("Finalizando o programa.");
+                        return;
+                    case "1":
+                        DesafiosGrupo3.Sum();
+                        break;
+                    case "2":
+                        DesafiosGrupo3.MetersToMillimeters();
+                        break;
+                    case "3":
+                        DesafiosGrupo3 challenges = new DesafiosGrupo3();
+                        challenges.RentCar();
+                        break;
+                    case "4":
+                        DesafiosGrupo3.Bhaskara();
+                        break;
+                    default:
+                        Console.WriteLine("Opção inexistente!");
+                        break;
+                }
             }
         }
 
