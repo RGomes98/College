@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Academico.Models.Aluno>
+
+@{
+    ViewData["Title"] = "Lista de Alunos";
+}
+
+<div>
+    <h2>@ViewData["Title"]</h2>
+    <h4>Todos os Alunos</h4>
+    <hr />
+    <a asp-action="Create" class="btn btn-primary">Cadastrar Novo Aluno</a>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.RegistroAcademico)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NomeCompleto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Curso)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Semestre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataNascimento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TelefoneContato)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmailInstitucional)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EnderecoResidencial)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cidade)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Estado)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => student.RegistroAcademico)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => student.NomeCompleto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => student.Curso)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => student.Semestre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => student.DataNascimento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => student.TelefoneContato)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => student.EmailInstitucional)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => student.EnderecoResidencial)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => student.Cidade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => student.Estado)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@student.Id" class="btn btn-warning">Editar</a>
+                        <a asp-action="Details" asp-route-id="@student.Id" class="btn btn-info">Detalhes</a>
+                        <a asp-action="Delete" asp-route-id="@student.Id" class="btn btn-danger">Excluir</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
