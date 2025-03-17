@@ -40,10 +40,9 @@ namespace Academico.Models
         [Display(Name = "E-mail Institucional")]
         public string EmailInstitucional { get; set; }
 
-        [Required(ErrorMessage = "O endereço residencial precisa ser informado.")]
-        [StringLength(150, ErrorMessage = "O endereço não pode ultrapassar 150 caracteres.")]
-        [Display(Name = "Endereço Residencial")]
-        public string EnderecoResidencial { get; set; }
+    [StringLength(150, ErrorMessage = "O endereço não pode ultrapassar 150 caracteres.")]
+    [Display(Name = "Endereço Residencial")]
+    public string? EnderecoResidencial { get; set; }
 
         [Required(ErrorMessage = "A cidade deve ser informada.")]
         [StringLength(50, ErrorMessage = "A cidade não pode ter mais de 50 caracteres.")]
